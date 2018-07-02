@@ -1,0 +1,33 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-2">Please Login:</h1>
+        <p class="lead">(Must be SuperUser, please check with the site admin)</p>
+        <hr class="my-2">
+        
+        {% if form.errors %}
+            <p>Your username and password didn't match! Please try again.</p>
+        {% endif %}
+        
+        <div class="container">
+            <form action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                {% form.as_p %}
+                <div class="form-group row">
+                    <div class="offset-sm-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                    <div class="offset-sm-2 col-sm-10">
+                        <input type="hidden" name="next" value="{{next}}">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}
