@@ -12,14 +12,14 @@
     <a class="btn btn-dark" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
 {% endif %} 
 
-<p class="postcontent">{{post.title|safe|linebreaksbr}}</p>
+<p class="postcontent">{{post.text|safe|linebreaksbr}}</p>
 
 {% if user.is_authenticated %}
     <a class="btn btn-dark" href="{% url 'post_edit' pk=post.pk %}">
-        <span class="glyphicon glyphicon-pencil"></span>
+        <i class="fas fa-edit"></i>
     </a>
     <a class="btn btn-dark" href="{% url 'post_remove' pk=post.pk %}">
-        <span class="glyphicon glyphicon-remove"></span>
+        <i class="fas fa-trash"></i>
     </a>
 {% endif %}
 
@@ -35,10 +35,10 @@
             {{comment.created_date}}
             {% if not comment.approved_comment %}
                 <a class="btn btn-dark" href="{% url 'comment_remove' pk=comment.pk %}">
-                    <span class="glyphicon glyphicon-remove"></span>
+                    <i class="fas fa-trash"></i>
                 </a>
                 <a class="btn btn-dark" href="{% url 'comment_approve' pk=comment.pk %}">
-                    <span class="glyphicon glyphicon-ok"></span>
+                    <i class="fas fa-thumbs-up"></i>
                 </a>
             {% endif %}
 
